@@ -18,4 +18,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
+
+  spec.add_dependency 'libnotify', '~> 0.9.1'
+  spec.add_dependency 'daemons', '~> 1.2.3'
+  spec.add_dependency 'httparty', '~> 0.13.5'
+  spec.add_dependency 'timers', '~> 4.0.1'
+  spec.add_dependency 'rake', '~> 10.4.2'
+
 end

@@ -1,3 +1,13 @@
+PATH
+  remote: .
+  specs:
+    team_city_notifier (0.0.1)
+      daemons (~> 1.2.3)
+      httparty (~> 0.13.5)
+      libnotify (~> 0.9.1)
+      rake (~> 10.4.2)
+      timers (~> 4.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -19,8 +29,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  daemons
-  httparty
-  libnotify
-  rake
-  timers
+  team_city_notifier!

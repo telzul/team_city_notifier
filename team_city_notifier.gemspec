@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["DarthMax"]
   spec.email         = ["max@kopfueber.org"]
   spec.summary       = %q{Get Notifications for TeamCity builds}
-  spec.description   = %q{Foooooo}
+  spec.description   = %q{Get Notifications for TeamCity builds using libnotify}
   spec.homepage      = ""
   spec.license       = "MIT"
 

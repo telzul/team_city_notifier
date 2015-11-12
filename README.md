@@ -9,7 +9,7 @@ This gem requires *libnotify* to be installed on your system.
 ## USAGE
 
 First you need the URL of your personal notification RSS feed. This can be found at 
-https://[YOUR_TEAM_CITY_URL]/feed/generateFeedUrl.html
+*https://[YOUR_TEAM_CITY_URL]/feed/generateFeedUrl.html*
 
 Settings are made via Environment Variables, so to start the daemon run
 

@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)) + '/../lib/')
+
+require 'team_city_notifier'
+require 'daemons'
+
+
+Daemons.run_proc('team_city_notifier.rb') do
+  TeamCityNotifier.run
+end

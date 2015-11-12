@@ -1,0 +1,26 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    daemons (1.2.3)
+    ffi (1.9.10)
+    hitimes (1.2.2)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    json (1.8.3)
+    libnotify (0.9.1)
+      ffi (>= 1.0.11)
+    multi_xml (0.5.5)
+    rake (10.4.2)
+    timers (4.0.1)
+      hitimes
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  daemons
+  httparty
+  libnotify
+  rake
+  timers

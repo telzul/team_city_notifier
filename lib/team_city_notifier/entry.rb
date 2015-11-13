@@ -44,8 +44,7 @@ module TeamCityNotifier
     end
 
     def notification_icon
-      script_folder = File.dirname(__FILE__)
-      File.join(script_folder,"..","..","icons",failed? ? "failure.svg" : "success.svg")
+      File.join(File.dirname(__FILE__) ,"..","..","icons",failed? ? "failure.svg" : "success.svg")
     end
 
   end

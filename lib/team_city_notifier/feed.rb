@@ -21,21 +21,32 @@ module TeamCityNotifier
 
     private
       def fetch_feed
-        response = self.class.get(@feed_url,@options)
-
-        if response.success?
+        begin
+          response = self.class.get(@feed_url,@options)
+          raise StandardError.new("Could not connect to TeamCity - status code #{response.code}") unless response.success?
           parse_entries(response.parsed_response)
-        else
-          []
+
+        rescue StandardError => e
+          print_error(e)
+          exit(1)
         end
+
       end
 
       def parse_entries(raw_data)
-        if Time.parse(raw_data['feed']['updated']) > @last_update
-          raw_data['feed']['entry'].map {|raw_data| Entry.new(raw_data)}.reject {|e| e.created_at <= @last_update}
-        else
-          []
+        raw_data['feed']['entry'].map {|entry_data| Entry.new(entry_data)}.reject {|e| e.created_at <= @last_update}
+      end
+
+      def print_error(e)
+        n = Libnotify.new do |notify|
+          notify.summary    = "TeamCityNotifier Error"
+          notify.body       = e.message
+          notify.timeout    = 10         # 1.5 (s), 1000 (ms), "2", nil, false
+          notify.urgency    = :critical   # :low, :normal, :critical
+          notify.transient  = true        # default false - keep the notifications around after display
+          notify.icon_path  = File.join(File.dirname(__FILE__) ,"..","..","icons","failure.svg")
         end
+        n.show!
       end
   end
 end

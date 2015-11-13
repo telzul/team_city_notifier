@@ -3,9 +3,58 @@
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)) + '/../lib/')
 
 require 'team_city_notifier'
+require 'optparse'
 require 'daemons'
 
+daemonize=false
+config = TeamCityNotifier.config
 
-Daemons.run_proc('team_city_notifier.rb') do
-  TeamCityNotifier.run
+options = OptionParser.new do |opts|
+  opts.banner = "Usage: team_city_notifier -h -u -p [-i|-d]"
+
+  opts.on "-u", "--user USERNAME", :REQUIRED, "TeamCity user name" do |user|
+    config.user = user
+  end
+
+  opts.on "-p", "--password PASSWORD", :REQUIRED, "TeamCity password" do |passwd|
+    config.password = passwd
+  end
+
+  opts.on "-h", "--host HOST", :REQUIRED, "TeamCity RSS feed address" do |host|
+    config.host = host
+  end
+
+  opts.on "-i", "--interval INTERVAL", Integer, "Polling interval in seconds" do |interval|
+    config.interval = interval
+  end
+
+  opts.on "-d", "--daemonize", :OPTIONAL, "Daemonize script" do |d|
+    daemonize = true
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+
+      # Another typical switch to print the version.
+  opts.on_tail("--version", "Show version") do
+    puts ::Version.join('.')
+    exit
+  end
 end
+
+options.parse!(ARGV)
+
+missing_options = ['host','user','password'].select do |o|
+  config.send(o).nil?
+end
+
+if missing_options.any?
+  puts "Missing options: #{missing_options.join(", ")}"
+  puts options
+  exit(1)
+end
+
+Daemons.daemonize if daemonize
+TeamCityNotifier.run

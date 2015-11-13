@@ -1,25 +1,21 @@
 # TeamCity Notifier
 
-This tools hepls you keep track of your TeamCity builds via Desktopnotifications
+This tools hepls you keep track of your TeamCity builds via Desktop Notifications
 
 ## Requirements
 
-This gem requires *libnotify* to be installed on your system.
+This gem requires __libnotify__ to be installed on your system.
 
 ## USAGE
 
-First you need the URL of your personal notification RSS feed. This can be found at 
+First you need the URL of your personal notification RSS feed. This can be found at
 *https://[YOUR_TEAM_CITY_URL]/feed/generateFeedUrl.html*
 
-Settings are made via Environment Variables, so to start the daemon run
-
+To start the program than run
 ```
-$ TEAM_CITY_URL=[MY_TEAMCITY_URL  TEAM_CITY_USER=USERNAME TEAM_CITY_PASS=PASSWORD team_city_notifier start
+$ team_city_notifier -h HOST -u USER -p PASSWORD
 ```
-
-To stop the daemon run
-
+If you want to run it in background use the `-d` option. For all options run
 ```
-$ team_city_notifier stop
+$ team_city_notifier --help
 ```
-

@@ -33,9 +33,9 @@ module TeamCityNotifier
 
     def notification_title
       if failed?
-        "<h2 style=\"color:#e61919\">Build Failed!</h1>"
+        "<h1 style=\"color:#e61919\">Build Failed!</h1>"
       else
-        "<h2 style=\"color:#009933\">Build Successfull!</h1>"
+        "<h1 style=\"color:#009933\">Build Successfull!</h1>"
       end
     end
 
